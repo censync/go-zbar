@@ -78,8 +78,8 @@ func image_handler_callback(image *C.zbar_image_t, userdata unsafe.Pointer) {
 // Setup result handler callback.
 // The specified function will be called by the processor whenever new results are available from the video stream or a static image.
 func (p *Processor) SetDataHandler(fn func(img *Image)) {
-	p.dataHandler = fn
 	C.zbar_processor_set_data_handler(p.c_processor, (*C.zbar_image_data_handler_t)(C.image_data_handler), unsafe.Pointer(p))
+	p.dataHandler = fn
 }
 
 // Associate user specified data value with the processor.
